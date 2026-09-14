@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NZ Future Forward Party</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --color-bg:          #F3F9FB;   /* page background, pale sky blue */
+    --color-bg-alt:      #E7F2EF;   /* alternate section background, pale mint */
+    --color-surface:     #FFFFFF;   /* cards / raised surfaces */
+    --color-ink:         #16333C;   /* main text, deep blue-ink */
+    --color-ink-soft:    #48626B;   /* secondary text */
+    --color-harbour:     #1C5872;   /* primary brand blue */
+    --color-harbour-dark:#0F3A4D;   /* nav / hero background */
+    --color-fern:        #2F8558;   /* accent green */
+    --color-fern-light:  #DCEEE1;   /* light green tint for backgrounds */
+    --color-border:      #C9DFE6;   /* hairline borders */
+    --nav-height: 76px;
+
+    font-size: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: "Public Sans", Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Lora", Georgia, serif;
+    color: var(--color-harbour-dark);
+    line-height: 1.25;
+    margin: 0 0 0.5em 0;
+    font-weight: 600;
+  }
+
+  p { margin: 0 0 1em 0; }
+
+  a { color: var(--color-harbour); }
+
+  :focus-visible {
+    outline: 3px solid var(--color-fern);
+    outline-offset: 2px;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    scroll-margin-top: calc(var(--nav-height) + 20px);
+    padding: 72px 0;
+  }
+  section.alt { background: var(--color-bg-alt); }
+
+  .section-label {
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    color: var(--color-fern);
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .section-intro {
+    max-width: 62ch;
+    color: var(--color-ink-soft);
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* NAVIGATION                                                            */
+  /* -------------------------------------------------------------------- */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-harbour-dark);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid var(--color-fern);
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  /* EDIT: This is the placeholder "logo" frame. Replace the empty src="" on
+     the <img> below with a path like images/logo.png once you have a logo
+     file, or leave it blank to keep an empty frame. */
+  .logo-frame {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: rgba(255,255,255,0.06);
+  }
+  .logo-frame img { width: 100%; height: 100%; object-fit: contain; }
+  .logo-frame span {
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    line-height: 1.1;
+    padding: 2px;
+  }
+
+  .nav-brand-name {
+    font-family: "Lora", Georgia, serif;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  nav.nav-links {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  nav.nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+  nav.nav-links a:hover,
+  nav.nav-links a:focus-visible {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+  }
+
+  @media (max-width: 720px) {
+    header.site-nav { height: auto; }
+    .nav-inner { flex-direction: column; align-items: flex-start; padding: 12px 20px; }
+    nav.nav-links { justify-content: flex-start; width: 100%; }
+    :root { --nav-height: 108px; }
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* HERO / HOME                                                           */
+  /* -------------------------------------------------------------------- */
+  #home {
+    background: linear-gradient(180deg, var(--color-harbour-dark) 0%, var(--color-harbour) 100%);
+    color: #fff;
+    padding: 96px 0 88px 0;
+    scroll-margin-top: 0;
+  }
+  #home .container { max-width: 1080px; }
+
+  /* EDIT: Party name */
+  #home h1 {
+    color: #fff;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin-bottom: 18px;
+  }
+
+  /* EDIT: Party tagline / slogan */
+  #home .tagline {
+    font-size: 1.25rem;
+    color: var(--color-fern-light);
+    border-left: 4px solid var(--color-fern);
+    padding-left: 16px;
+    margin: 0 0 28px 0;
+  }
+
+  /* EDIT: Short home-page welcome blurb (1–2 sentences) */
+  #home .home-blurb {
+    color: rgba(255,255,255,0.88);
+    max-width: 56ch;
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* HOME QUICK-LINK CARDS (clickable image tiles that jump to a section)  */
+  /* -------------------------------------------------------------------- */
+  .quicklink-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .quicklink-card {
+    display: block;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .quicklink-card:hover,
+  .quicklink-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(15,58,77,0.14);
+  }
+  .quicklink-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--color-bg-alt);
+    border-bottom: 3px solid var(--color-fern);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .quicklink-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .quicklink-photo span {
+    font-size: 0.75rem;
+    color: var(--color-ink-soft);
+    text-align: center;
+    padding: 8px;
+  }
+  .quicklink-card h3 {
+    margin: 16px 16px 4px 16px;
+    font-size: 1.1rem;
+  }
+  .quicklink-card p {
+    margin: 0 16px 16px 16px;
+    color: var(--color-ink-soft);
+    font-size: 0.9rem;
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* GENERIC CARD LOOK (used sparingly — coalition) */
+  /* -------------------------------------------------------------------- */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-fern);
+    border-radius: 4px;
+    padding: 22px 22px;
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* IN-SECTION PHOTO + TEXT BLOCKS (alternating image / text rows)        */
+  /* -------------------------------------------------------------------- */
+  .media-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: center;
+    margin: 36px 0;
+  }
+  .media-row.reverse .media-row-photo { order: 2; }
+  .media-row.reverse .media-row-text { order: 1; }
+  @media (max-width: 720px) {
+    .media-row { grid-template-columns: 1fr; }
+    .media-row.reverse .media-row-photo { order: 1; }
+    .media-row.reverse .media-row-text { order: 2; }
+  }
+  .media-row-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .media-row-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .media-row-photo span {
+    font-size: 0.8rem;
+    color: var(--color-ink-soft);
+    text-align: center;
+    padding: 10px;
+  }
+  .media-row-text p:last-child { margin-bottom: 0; }
+
+  /* -------------------------------------------------------------------- */
+  /* PREV / NEXT SECTION LINKS                                             */
+  /* -------------------------------------------------------------------- */
+  .section-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+    font-family: "Lora", Georgia, serif;
+    font-weight: 600;
+  }
+  .section-nav a { text-decoration: none; }
+  .section-nav a:hover { text-decoration: underline; }
+  .section-nav .next { margin-left: auto; }
+
+  /* -------------------------------------------------------------------- */
+  /* POLICIES: "why current policy doesn't work" comparison rows           */
+  /* -------------------------------------------------------------------- */
+  .critique-block {
+    margin-top: 28px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .critique-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  @media (max-width: 680px) {
+    .critique-row { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  .critique-row .col-heading {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-soft);
+    margin-bottom: 6px;
+  }
+  .critique-row .current-policy .col-heading { color: #A14B3D; }
+  .critique-row .why-fails .col-heading { color: var(--color-fern); }
+
+  .critique-row .current-policy {
+    border-right: 1px solid var(--color-border);
+    padding-right: 32px;
+  }
+  @media (max-width: 680px) {
+    .critique-row .current-policy { border-right: none; padding-right: 0; padding-bottom: 8px; border-bottom: 1px dashed var(--color-border); }
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* POLICIES: expandable long-form policy areas                          */
+  /* -------------------------------------------------------------------- */
+  .policy-area {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .policy-area summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: "Lora", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-harbour-dark);
+  }
+  .policy-area summary::-webkit-details-marker { display: none; }
+
+  .policy-area summary .toggle-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-fern-light);
+    color: var(--color-fern);
+    font-family: "Public Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .policy-area[open] summary .toggle-icon::before { content: "–"; }
+  .policy-area summary .toggle-icon::before { content: "+"; }
+
+  .policy-area-body {
+    padding: 0 24px 28px 24px;
+    border-top: 1px solid var(--color-border);
+  }
+  .policy-area-body h4 {
+    margin-top: 22px;
+    color: var(--color-fern);
+    font-size: 1rem;
+    text-transform: none;
+  }
+  .policy-area-body h4:first-child { margin-top: 20px; }
+  .policy-area-body ul {
+    margin: 0 0 1.1em 0;
+    padding-left: 22px;
+  }
+  .policy-area-body ul li {
+    margin-bottom: 6px;
+  }
+
+  /* -------------------------------------------------------------------- */
+  /* COALITION CARD GRID                                                   */
+  /* -------------------------------------------------------------------- */
+  .coalition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 28px;
+  }
+  .coalition-grid .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .coalition-grid .card p:last-child { margin-bottom: 0; }
+  .coalition-grid .card:only-child { max-width: 420px; }
+
+  /* -------------------------------------------------------------------- */
+  /* MANIFESTO                                                             */
+  /* -------------------------------------------------------------------- */
+  .manifesto-text {
+    margin-top: 24px;
+    max-width: 72ch;
+    font-size: 1.05rem;
+  }
+  .manifesto-text p { margin-bottom: 1.1em; }
+
+  /* -------------------------------------------------------------------- */
+  /* FOOTER                                                                */
+  /* -------------------------------------------------------------------- */
+  footer {
+    background: var(--color-harbour-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 28px 0;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  footer a { color: var(--color-fern-light); }
+</style>
+</head>
+<body>
+
+<!-- ======================================================================
+     STICKY NAVIGATION BAR
+     EDIT: Party name (appears twice — once here, once in the Home hero
+     below). Keep them the same.
+     ====================================================================== -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <!-- EDIT: Party logo. Leave src="" for an empty frame, or set
+           src="images/logo.png" once you've added a logo file to an
+           "images" folder in this repository. -->
+      <div class="logo-frame">
+        <img src="images/logo.png" alt="Party logo"
+             onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span style="display:none;">LOGO</span>
+      </div>
+      <!-- EDIT: Party name (short version for the nav bar) -->
+      <span class="nav-brand-name">NZ Future Forward Party</span>
+    </div>
+    <nav class="nav-links" aria-label="Section navigation">
+      <a href="#home">Home</a>
+      <a href="#manifesto">Manifesto</a>
+      <a href="#policies">Policies</a>
+      <a href="#coalition">Coalition</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================================================================
+     HOME
+     ====================================================================== -->
+<section id="home">
+  <div class="container">
+    <!-- EDIT: Party logo + party name (full version for the hero). The logo
+         sits right next to the name, larger than the nav-bar version. -->
+    <div style="display:flex; align-items:center; gap:28px; margin-bottom:18px; flex-wrap:wrap;">
+      <img src="images/logo.png" alt="Party logo" style="width:150px; height:150px; object-fit:contain; flex-shrink:0;" onerror="this.style.display='none';">
+      <h1 style="margin-bottom:0;">NZ Future Forward Party</h1>
+    </div>
+    <!-- EDIT: Party tagline / slogan -->
+    <p class="tagline">Cleaner transport, a greener Aotearoa.</p>
+    <!-- EDIT: Short welcome blurb, 1–2 sentences introducing the party -->
+    <p class="home-blurb">NZ Future Forward Party is fighting for reliable public transport and real climate action — because every generation deserves a country that works for them.</p>
+
+    <!-- ------------------------------------------------------------------
+         QUICK-LINK CARDS — click a photo to jump straight to that section.
+         Repeatable block: each .quicklink-card is one clickable tile.
+         TO ADD ANOTHER: copy from QUICKLINK CARD START to QUICKLINK CARD
+         END and paste it inside .quicklink-grid. Point href at the section
+         you want it to jump to (e.g. href="#policies").
+         ------------------------------------------------------------------ -->
+    <div style="margin-top:56px;">
+      <div class="quicklink-grid">
+
+        <!-- QUICKLINK CARD START -->
+        <a class="quicklink-card" href="#manifesto">
+          <div class="quicklink-photo">
+            <!-- EDIT: Photo for the Manifesto tile -->
+            <img src="" alt="" onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span style="display:flex;">Manifesto photo</span>
+          </div>
+          <h3>Manifesto</h3>
+          <p>Our overall vision and values.</p>
+        </a>
+        <!-- QUICKLINK CARD END -->
+
+        <!-- QUICKLINK CARD START -->
+        <a class="quicklink-card" href="#policies">
+          <div class="quicklink-photo">
+            <!-- EDIT: Photo for the Policies tile -->
+            <img src="" alt="" onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span style="display:flex;">Policies photo</span>
+          </div>
+          <h3>Policies</h3>
+          <p>What we'd change, and how.</p>
+        </a>
+        <!-- QUICKLINK CARD END -->
+
+        <!-- QUICKLINK CARD START -->
+        <a class="quicklink-card" href="#coalition">
+          <div class="quicklink-photo">
+            <!-- EDIT: Photo for the Coalition tile -->
+            <img src="" alt="" onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <span style="display:flex;">Coalition photo</span>
+          </div>
+          <h3>Coalition</h3>
+          <p>Who we could govern alongside.</p>
+        </a>
+        <!-- QUICKLINK CARD END -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     MANIFESTO
+     ====================================================================== -->
+<section id="manifesto" class="alt">
+  <div class="container">
+    <p class="section-label">Our manifesto</p>
+    <h2>Vision &amp; values</h2>
+    <p class="section-intro">The beliefs behind every decision we make, and the kind of country we're working towards.</p>
+
+    <div class="manifesto-text">
+      <p>NZ Future Forward Party exists because the decisions made today shape the country the next generation inherits. We believe every New Zealander — no matter their postcode, income, or age — deserves reliable transport, a healthy environment, and a fair shot at the future.</p>
+      <p>We are guided by three core values: fairness, so that the cost of getting around and the cost of climate change don't fall hardest on those who can least afford it; sustainability, so that our roads, rivers, and native wildlife are protected rather than sacrificed for short-term convenience; and accountability, so that the policies we promise are the policies we deliver.</p>
+      <p>We don't believe in choosing between a thriving economy and a thriving environment. We believe in building both — cleaner transport, stronger communities, and a country that's still worth living in fifty years from now.</p>
+    </div>
+
+    <!-- ------------------------------------------------------------------
+         IN-PAGE PHOTO + TEXT ROW — pairs a photo with a short statement.
+         Add "reverse" to the class list to flip photo/text sides.
+         ------------------------------------------------------------------ -->
+    <div class="media-row">
+      <div class="media-row-photo">
+        <!-- EDIT: Photo showing your party/campaign/supporters -->
+        <img src="" alt="" onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span style="display:flex;">Campaign / supporters photo</span>
+      </div>
+      <div class="media-row-text">
+        <!-- EDIT: A short statement about why people should get involved -->
+        <p>However, you and your family can cause this change — by voting for us, NZ Future Forward Party.</p>
+      </div>
+    </div>
+
+    <div class="media-row reverse">
+      <div class="media-row-photo">
+        <!-- EDIT: Photo showing the impact of your policies -->
+        <img src="" alt="" onload="this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span style="display:flex;">Policy impact photo</span>
+      </div>
+      <div class="media-row-text">
+        <!-- EDIT: A short statement about the impact of your policies -->
+        <p>When we implement our policies, we will drastically improve public transport for everyday New Zealanders and protect the environment for future generations.</p>
+      </div>
+    </div>
+
+    <div class="section-nav">
+      <a href="#home">&larr; Home</a>
+      <a class="next" href="#policies">Policies &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     POLICIES
+     ====================================================================== -->
+<section id="policies">
+  <div class="container">
+    <p class="section-label">Our policies</p>
+    <h2>Where we stand</h2>
+    <p class="section-intro">We've set out where current policy is falling short, and laid out two full policy areas — transport and the environment — showing exactly what we'd change and why.</p>
+
+    <h3 style="margin-top:40px;">Current policies — and why they don't work</h3>
+    <div class="critique-block">
+
+      <!-- CRITIQUE PAIR START -->
+      <div class="critique-row">
+        <div class="current-policy">
+          <p class="col-heading">Current policy</p>
+          <!-- EDIT: Name/describe an existing real-world policy -->
+          <p>The policy statement on land transport is one current policy for this matter.</p>
+        </div>
+        <div class="why-fails">
+          <p class="col-heading">Why it doesn't work</p>
+          <!-- EDIT: Explain why this existing policy fails and who it fails -->
+          <p>There are many issues which include; traffic congestion still being a major problem in big cities, rural areas still not having enough access to public transport, the system still being very unreliable with many delays, and many people still using private cars which increases emissions.</p>
+        </div>
+      </div>
+      <!-- CRITIQUE PAIR END -->
+
+      <!-- CRITIQUE PAIR START -->
+      <div class="critique-row">
+        <div class="current-policy">
+          <p class="col-heading">Current policy</p>
+          <!-- EDIT: Name/describe a second existing real-world policy -->
+          <p>The emission reduction plan is one policy that has been put in place for this matter.</p>
+        </div>
+        <div class="why-fails">
+          <p class="col-heading">Why it doesn't work</p>
+          <!-- EDIT: Explain why this second existing policy fails and who it fails -->
+          <p>There are still may problems such as; NZ still producing a lot of green house gases, native plants and animals still endangered/under threat, pollution still affecting some rivers and lake, and beaches which can also endanger species on land and marine life.</p>
+        </div>
+      </div>
+      <!-- CRITIQUE PAIR END -->
+
+    </div>
+
+    <!-- ------------------------------------------------------------------
+         EXPANDABLE LONG-FORM POLICY AREAS
+         Each <details class="policy-area"> is one full policy area, click
+         the heading to expand/collapse. Copy a whole
+         <details class="policy-area">...</details> block to add a third
+         policy area.
+         ------------------------------------------------------------------ -->
+    <h3 style="margin-top:48px;">Our policy areas</h3>
+
+    <!-- POLICY AREA START -->
+    <details class="policy-area" open>
+      <summary>
+        <!-- EDIT: Policy area 1 title -->
+        <span>Transport System Reworked!!</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="policy-area-body">
+        <h4>Overview</h4>
+        <!-- EDIT: Intro / background to the issue -->
+        <p>This is important for politicians to address as they should want the people of NZ to be free of stress while using the transport system, citizens should be concerned as many people from their own country or even themselves are being affected by the poor public transport systems in place at the moment.</p>
+
+        <h4>Why it matters</h4>
+        <!-- EDIT: Statement of the problem -->
+        <p>There is more than one specific problem; like how public transport is too expensive, traffic congestion, rural areas not having enough access to public transport. The poor reliability of the system has caused all these problems. More than 30% of all NZ students struggle with the expenses and unreliability of the buses, trains, or ferries.</p>
+
+        <h4>Current policy</h4>
+        <!-- EDIT: Current policies / issues with them -->
+        <p>The Policy Statement on Land Transport is one current policy for this matter, there are many issues which include traffic congestion still being a major problem in big cities, rural areas still not having enough access to public transport, the system still being very unreliable with many delays, and many people still using private cars which increases emissions.</p>
+
+        <h4>How we'll do it</h4>
+        <!-- EDIT: Our policy, how it solves the problem, the benefits, and any obstacles -->
+        <p>What will our policies be on this matter? How does it solve the problem better than the current policy? What are the benefits? Any obstacles?</p>
+        <ul>
+          <li>Reduce fares for students, young people and elders (over 65) by 50%</li>
+          <li>Increase the number of each transportation method</li>
+          <li>Improve transport in rural areas</li>
+          <li>Increase the amount of electric buses</li>
+          <li>Increase the number of cycling / walking paths</li>
+        </ul>
+        <p>Our main policies on this matter will be: reducing fares for students, young people and elders (over 65) by 50%, increasing the number of each transportation method, improving transport in rural areas, increasing the amount of electric buses, and increasing the number of cycling/walking paths. These policies solve the problem of public transport being too expensive for low income families, traffic congestion, the amount of carbon emissions, and safer transport in rural communities. Some benefits can be cleaning up the environment by using electric buses, more frequent users of public transport which can also affect the number of people using private cars. There are also some obstacles that we would face while working on these changes such as the time it will take for some of these major projects, the long term investment needed, and the patience from the citizens of NZ.</p>
+
+        <h4>Summary</h4>
+        <!-- EDIT: Summary / conclusion -->
+        <p>Our first policy will be about transport, we will reduce fares by 50% for students, young people and people over 65 years, increase the number of each method of transportation, increase the number of electric buses, and increase the number of methods of transport in rural communities. These will help with many things such as, helping low income families, reducing the number of carbon emissions, providing a safer commute to work/school, and reduced traffic congestion. These will help NZ get one step closer to being a perfect thriving nation.</p>
+      </div>
+    </details>
+    <!-- POLICY AREA END -->
+
+    <!-- POLICY AREA START -->
+    <details class="policy-area">
+      <summary>
+        <!-- EDIT: Policy area 2 title -->
+        <span>Moving to the Future Greener and Cleaner!</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="policy-area-body">
+        <h4>Overview</h4>
+        <!-- EDIT: Intro / background to the issue -->
+        <p>This issue on our climate/environment is important for politicians to address as they should care for our country and environment and how it can affect people, native species and communities all around NZ.</p>
+
+        <h4>Why it matters</h4>
+        <!-- EDIT: Statement of the problem -->
+        <p>There is more than one specific problem but they all revolve around our environment that we live in: climate change causes more floods and storms around some areas on NZ such as Whenuapai, native plants/animals are losing their habitats, also the whole of NZ needing more renewable energy sources for the future, pollution has also taken over many rivers all around NZ.</p>
+
+        <h4>Current policy</h4>
+        <!-- EDIT: Current policies / issues with them -->
+        <p>The Emission Reduction Plan is one policy that has been put in place for this matter, there are still many problems such as; NZ still producing a lot of greenhouse gases, native plants and animals still endangered/under threat, pollution still affecting some rivers, lakes, and beaches, which can also endanger species on land and marine life.</p>
+
+        <h4>How we'll do it</h4>
+        <!-- EDIT: Our policy, how it solves the problem, the benefits, and any obstacles -->
+        <p>What will our policies be on this matter? How does it solve the problem better than the current policy? What are the benefits? Any obstacles?</p>
+        <ul>
+          <li>Plant over 10 million native trees / plants</li>
+          <li>Invest in more renewable energy sources for the future</li>
+          <li>Protect wildlife by placing pest control traps</li>
+          <li>Reduce carbon emissions</li>
+        </ul>
+        <p>Our policies that we will implement on these matters will be: planting over 10 million native trees/plants, investing in more renewable energy sources for the future, protecting wildlife by placing pest control traps, and reducing carbon emissions. These policies that we have chosen will help weaken the damages of climate change and causing less natural disasters, pollution harming rivers and lakes, and native plants/animals losing their habitat. Some benefits could be: cleaner beaches for the public, a cleaner future by renewable energy sources, more native animals/plants thriving. There are also some obstacles such as getting enough citizens who are willing to volunteer to plant the native trees, getting funding for these long term renewable energy projects, and funding for enough pest control traps for all around NZ.</p>
+
+        <h4>Summary</h4>
+        <!-- EDIT: Summary / conclusion -->
+        <p>Our second policy will be about the environment and sustaining our wildlife for the future, we will plant over 10 million native trees and plants, invest in more renewable energy sources for the future, protect wildlife by planting more pest control traps, and reduce carbon emissions with electric buses which can also link to our transport policies. This will build a strong foundation for NZ's future.</p>
+      </div>
+    </details>
+    <!-- POLICY AREA END -->
+
+    <div class="section-nav">
+      <a href="#manifesto">&larr; Manifesto</a>
+      <a class="next" href="#coalition">Coalition &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================================
+     POTENTIAL COALITION
+     ====================================================================== -->
+<section id="coalition" class="alt">
+  <div class="container">
+    <p class="section-label">Working together</p>
+    <h2>Potential coalition partners</h2>
+    <p class="section-intro">We're open about who we could realistically work with in government, and what common ground makes that possible.</p>
+    <!-- ------------------------------------------------------------------
+         Repeatable block: each .card is one potential coalition partner.
+         TO ADD ANOTHER PARTNER: copy from COALITION CARD START to
+         COALITION CARD END and paste it inside .coalition-grid.
+         ------------------------------------------------------------------ -->
+    <div class="coalition-grid">
+
+      <!-- COALITION CARD START -->
+      <div class="card">
+        <!-- EDIT: Name of a potential coalition partner party -->
+        <h3>Labour Party</h3>
+        <!-- EDIT: Why this party could realistically ally with them -->
+        <p>We think we will would well with this party because, 1: They support longterm infastucture projects, 2: They support families in need, 3: They also aim to make NZ a cleaner envronment to live in.</p>
+      </div>
+      <!-- COALITION CARD END -->
+
+    </div>
+
+    <div class="section-nav">
+      <a href="#policies">&larr; Policies</a>
+      <a class="next" href="#home">Home &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     FOOTER
+     ====================================================================== -->
+<footer>
+  <p style="margin:0; display:flex; justify-content:center; gap:28px; flex-wrap:wrap;">
+    <span>ph: 02112341234</span>
+    <span>hl25203@my.westlake.school.nz</span>
+    <span>by: Joshua Lee</span>
+  </p>
+</footer>
+
+</body>
+</html>
